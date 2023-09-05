@@ -33,4 +33,17 @@ public class CashCardJsonTest {
                 .isEqualTo(777.00);
     }
 
+    @Test
+    public void cashCardDeserializationTest() throws IOException{
+        String expected = """
+               {
+                "id": 77,
+                "amount" : 777.00
+               }
+               """;
+        assertThat(json.parse(expected)).isEqualTo(new CashCard(77L, 777.00));
+        assertThat(json.parseObject(expected).id()).isEqualTo(77);
+        assertThat(json.parseObject(expected).amount()).isEqualTo(777.00);
+    }
+
 }
